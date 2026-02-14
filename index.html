@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For You ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    height: 100vh;
+    font-family: 'Poppins', sans-serif;
+    background:
+        linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+        url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1920&q=80");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Floating hearts */
+.hearts {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.hearts span {
+    position: absolute;
+    bottom: -50px;
+    font-size: 20px;
+    animation: floatUp 8s linear infinite;
+    opacity: 0.7;
+}
+
+@keyframes floatUp {
+    0% { transform: translateY(0) scale(1); opacity: 0; }
+    10% { opacity: 0.7; }
+    100% { transform: translateY(-110vh) scale(1.5); opacity: 0; }
+}
+
+/* Card */
+.card {
+    position: relative;
+    z-index: 2;
+    background: rgba(255,255,255,0.22);
+    backdrop-filter: blur(18px);
+    border-radius: 24px;
+    padding: 40px;
+    max-width: 720px;
+    color: #fff;
+    text-align: center;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    animation: fadeIn 1.2s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+h1 {
+    margin-bottom: 20px;
+    font-size: 32px;
+}
+
+.poem {
+    font-size: 17px;
+    line-height: 1.7;
+    margin-bottom: 30px;
+}
+
+/* Buttons */
+.buttons {
+    position: relative;
+    height: 70px;
+}
+
+button {
+    padding: 12px 30px;
+    font-size: 18px;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+button:hover {
+    transform: scale(1.08);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+#yesBtn {
+    background: #ff2f6d;
+    color: #fff;
+}
+
+#noBtn {
+    background: #444;
+    color: #fff;
+    position: absolute;
+}
+
+/* Celebration */
+#celebration {
+    display: none;
+    margin-top: 30px;
+    animation: fadeIn 1s ease forwards;
+}
+
+#celebration h2 {
+    font-size: 28px;
+    margin-bottom: 15px;
+}
+
+.gallery img {
+    width: 300px;
+    border-radius: 22px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+}
+</style>
+</head>
+
+<body>
+
+<div class="hearts"></div>
+
+<div class="card">
+    <h1>Will You Be Mine? ❤️</h1>
+
+    <div class="poem">
+        I know I'm not a ten, but I'm still one of the better men<br>
+        I know I'm not perfect, but even moon is having defect<br>
+        I know I'm not lover boy, but I just have fathered our boy<br>
+        Love is blind, please look into my heart and mind<br>
+        Yes I had a soul, now it's mixed in your soul<br>
+        Togetherness is a goal, be my partner in this dual??
+    </div>
+
+    <div class="buttons">
+        <button id="yesBtn">Yes ❤️</button>
+        <button id="noBtn">No 😏</button>
+    </div>
+
+    <div id="celebration">
+        <h2>Dancing into forever 💃🕺</h2>
+        <div class="gallery">
+            <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80">
+        </div>
+    </div>
+</div>
+
+<script>
+/* Hearts */
+const heartContainer = document.querySelector('.hearts');
+setInterval(() => {
+    const heart = document.createElement('span');
+    heart.innerHTML = '❤️';
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.fontSize = (15 + Math.random() * 20) + 'px';
+    heart.style.animationDuration = (6 + Math.random() * 5) + 's';
+    heartContainer.appendChild(heart);
+    setTimeout(() => heart.remove(), 10000);
+}, 400);
+
+/* Button logic */
+const noBtn = document.getElementById('noBtn');
+const yesBtn = document.getElementById('yesBtn');
+const celebration = document.getElementById('celebration');
+const startTime = Date.now();
+
+noBtn.addEventListener('mouseenter', () => {
+    const elapsed = (Date.now() - startTime) / 1000;
+    if (elapsed < 15) {
+        noBtn.style.left = Math.random() * 300 + 'px';
+        noBtn.style.top = Math.random() * 40 + 'px';
+    } else {
+        alert("Funny you still think you got this chance?? 😌");
+    }
+});
+
+yesBtn.addEventListener('click', () => {
+    celebration.style.display = 'block';
+    yesBtn.style.display = 'none';
+    noBtn.style.display = 'none';
+});
+</script>
+
+</body>
+</html>
